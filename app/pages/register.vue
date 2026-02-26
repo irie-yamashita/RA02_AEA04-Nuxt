@@ -4,6 +4,7 @@ import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 import { FetchError } from 'ofetch'
 
+/* TODO: redirect a pokemons */
 
 const { loggedIn, user, session, fetch, clear, openInPopup } = useUserSession();
 
@@ -38,7 +39,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
 watch(loggedIn, () => {
     if(loggedIn.value) {
-        navigateTo('/admin')
+        navigateTo('/login')
     }
 })
 

@@ -10,6 +10,7 @@ export const users = sqliteTable("users", {
 
 export const pokemons = sqliteTable("pokemons", {
     id: integer("id").primaryKey(),
+    pokedexNum: integer("pokedexNum").notNull(),
     name: text("name"),
     type: text("type").notNull(),
     level: integer("level"),
