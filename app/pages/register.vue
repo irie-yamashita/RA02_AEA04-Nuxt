@@ -47,24 +47,24 @@ watch(loggedIn, () => {
 <template>
     <UCard class="max-w-md m-auto my-10">
         <h1 class="text-2xl text-center">Register</h1>
-        <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+        <UForm :schema="schema" :state="state" class="flex flex-col items-stretch gap-y-4" @submit="onSubmit">
             <UFormField label="Nom" name="name">
                 <UInput v-model="state.name" class="w-full" />
             </UFormField>
 
             <UFormField label="Email" name="email">
-                <UInput v-model="state.email" />
+                <UInput v-model="state.email" class="w-full" />
             </UFormField>
 
             <UFormField label="Password" name="password">
-                <UInput v-model="state.password" type="password" />
+                <UInput v-model="state.password" type="password" class="w-full" />
             </UFormField>
 
-            <UButton type="submit">
+            <UButton type="submit" class="w-full justify-center">
                 Submit
             </UButton>
         </UForm>
-        <UButton class="mt-4" @click="openInPopup('/auth/github')">
+        <UButton class="mt-4 w-full justify-center" @click="openInPopup('/auth/github')">
             Login with Github
         </UButton>
     </UCard>
