@@ -74,24 +74,24 @@ const onSubmit = async () => {
         class="space-y-4"
       >
         <UFormField label="Nom" name="name">
-          <UInput v-model="state.name" />
+          <UInput class="w-full" v-model="state.name" />
         </UFormField>
 
         <UFormField label="Tipus" name="type">
-          <UInput v-model="state.type" placeholder="fire, water, grass, electric, normal" />
+          <UInput class="w-full" v-model="state.type" placeholder="fire, water, grass, electric, normal" />
         </UFormField>
 
         <UFormField label="Nivell" name="level">
-          <UInput type="number" v-model.number="state.level" />
+          <UInput class="w-full" type="number" v-model.number="state.level" />
         </UFormField>
 
         <UFormField label="Pokedex #" name="pokedexNum">
-          <UInput type="number" v-model.number="state.pokedexNum" />
+          <UInput class="w-full" type="number" v-model.number="state.pokedexNum" />
         </UFormField>
 
         <UButton
           type="submit"
-          color="primary"
+          class="btn-primary"
           :loading="loading"
           block
         >

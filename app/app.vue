@@ -10,4 +10,5 @@
 <style>
   @import "tailwindcss";
   @import "@nuxt/ui";
+  @import "~/assets/css/main.css";
 </style>

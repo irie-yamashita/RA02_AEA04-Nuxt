@@ -37,38 +37,40 @@ const deletePokemon = async (id: number) => {
     <div class="flex justify-between items-center">
       <h1 class="text-2xl font-bold">Els meus Pokémons</h1>
 
-      <UButton to="/pokemons/new" color="primary">
+      <UButton to="/pokemons/new" class="btn-primary">
         Afegir Pokémon
       </UButton>
     </div>
 
-    <UCard v-for="pokemon in pokemons" :key="pokemon.id" class="mb-4">
-      <div class="flex justify-between items-end">
-        <div>
-          <h2 class="font-bold uppercase">{{ pokemon.name }} - #{{ pokemon.pokedexNum }}</h2>
-          <p>Tipus: {{ pokemon.type }}</p>
-          <p>Nivell: {{ pokemon.level }}</p>
+    <div class="grid grid-cols-1 md:grid-cols-3">
+      <UCard v-for="pokemon in pokemons" :key="pokemon.id" class="mb-4">
+        <div class="flex justify-between items-end">
+          <div>
+            <h2 class="font-bold uppercase">{{ pokemon.name }} - #{{ pokemon.pokedexNum }}</h2>
+            <p>Tipus: {{ pokemon.type }}</p>
+            <p>Nivell: {{ pokemon.level }}</p>
+          </div>
+  
+          <div class="flex gap-2">
+            <UButton
+              size="sm"
+              color="info"
+              :to="`/pokemons/${pokemon.id}/edit`"
+            >
+              Editar
+            </UButton>
+  
+            <UButton
+              size="sm"
+              color="error"
+              @click="deletePokemon(pokemon.id)"
+            >
+              Eliminar
+            </UButton>
+          </div>
         </div>
-
-        <div class="flex gap-2">
-          <UButton
-            size="sm"
-            color="info"
-            :to="`/pokemons/${pokemon.id}/edit`"
-          >
-            Editar
-          </UButton>
-
-          <UButton
-            size="sm"
-            color="error"
-            @click="deletePokemon(pokemon.id)"
-          >
-            Eliminar
-          </UButton>
-        </div>
-      </div>
-    </UCard>
+      </UCard>
+    </div>
   </div>
 </template>
 
