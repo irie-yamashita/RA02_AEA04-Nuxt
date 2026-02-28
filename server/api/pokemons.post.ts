@@ -2,8 +2,9 @@ import { db } from "../db"
 import { pokemons } from "../db/schema"
 import type { PokemonType } from "../db/enums"
 import { pokemonTypes } from "../db/enums"
+import type { Pokemon } from "~/types"
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<Pokemon> => {
 
     // recupero id usuari
     const session = await requireUserSession(event)
@@ -39,5 +40,5 @@ export default defineEventHandler(async (event) => {
         .returning() // returning --> retorna un array
 
 
-    return newPokemon
+    return newPokemon as Pokemon
 })

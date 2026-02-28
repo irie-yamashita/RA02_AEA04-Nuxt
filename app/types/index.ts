@@ -3,14 +3,13 @@ export type PokemonType =
   | "water"
   | "grass"
   | "electric"
-  | "normal" // els que tinguis
+  | "normal"
 
 export interface Pokemon {
   id: number
-  name: string
+  name: string | null
   type: PokemonType
-  level: number
+  level: number | null
   pokedexNum: number
   ownerId: number
-  createdAt: Date
 }

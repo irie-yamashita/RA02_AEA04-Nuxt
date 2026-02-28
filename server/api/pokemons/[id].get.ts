@@ -1,8 +1,9 @@
 import { db } from "../../db"
 import { pokemons } from "../../db/schema"
 import { eq, and } from "drizzle-orm"
+import type { Pokemon } from "~/types"
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<Pokemon> => {
   // recupero id usuari
   const session = await requireUserSession(event)
   const ownerId = Number(session.user.id)
@@ -29,6 +30,6 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  return pokemon
+  return pokemon as Pokemon
 })
 
