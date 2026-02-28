@@ -41,8 +41,8 @@ const deletePokemon = async (id: number) => {
         Afegir Pokémon
       </UButton>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3">
+    <p v-if="!pokemons || pokemons.length <= 0">Encara no tens cap Pokémon :/ Prova d'afegir-ne un.</p>
+    <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-3">
       <UCard v-for="pokemon in pokemons" :key="pokemon.id" class="mb-4">
         <div class="flex justify-between items-end">
           <div>

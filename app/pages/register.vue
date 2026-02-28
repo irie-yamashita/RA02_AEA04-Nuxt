@@ -31,7 +31,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             body: event.data
         })
         toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'success' })
-        navigateTo('/pokemons')
+        navigateTo('/admin')
     } catch (error) {
 
     }
@@ -40,7 +40,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
 watch(loggedIn, () => {
     if(loggedIn.value) {
-        navigateTo('/login')
+        navigateTo('/admin')
     }
 })
 

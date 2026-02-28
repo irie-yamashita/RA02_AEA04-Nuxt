@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <UCard class="flex justify-end !rounded-none text-white">
+    <UCard class="flex justify-end !rounded-none">
         <div v-if="loggedIn" class="flex items-center gap-2">
           <h1>{{ user?.login }}</h1>
           <UButton @click="clear(); navigateTo('/login')" class="btn-primary">Logout</UButton>

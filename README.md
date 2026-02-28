@@ -60,3 +60,11 @@ npx drizzle-kit studio
 - `app/types/` - Tipus TypeScript compartits
 - `server/api/` - Endpoints de l'API
 - `server/db/` - Configuració de la base de dades
+
+
+## Usuari
+Per fer proves pots entrar amb les següents credencials:
+```
+email: test@itb.cat
+password: 12345678
+```
