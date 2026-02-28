@@ -1,83 +1,62 @@
-# Nuxt Minimal Starter
+# RA02_AEA04 - Nuxt Pokémons
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Aplicació web per gestionar una col·lecció de Pokémons amb Nuxt 3, Drizzle ORM i autenticació.
 
-## Setup
+## Instal·lació
 
-Make sure to install dependencies:
+1. Instal·la les dependències:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+2. Crea un fitxer `.env` a l'arrel del projecte amb les següents variables d'entorn:
 
-Start the development server on `http://localhost:3000`:
+```env
+NUXT_SESSION_PASSWORD=my_password_secret
+NUXT_OAUTH_GITHUB_CLIENT_ID=my_client_id
+NUXT_OAUTH_GITHUB_CLIENT_SECRET=my_client_secret
+```
+
+**Nota:** 
+- `NUXT_SESSION_PASSWORD`: Pots obtenir aquesta informació del repositori de Nuxt
+- `NUXT_OAUTH_GITHUB_CLIENT_ID` i `NUXT_OAUTH_GITHUB_CLIENT_SECRET`: Aquesta informació s'obté creant una OAuth app a GitHub
+
+3. Crea la carpeta `.data` per a la base de dades:
 
 ```bash
-# npm
+mkdir .data
+```
+
+4. Aplica els canvis a la base de dades:
+
+```bash
+npx drizzle-kit push
+```
+
+Això crearà la base de dades SQLite a `.data/sqlite.db`.
+
+## Desenvolupament
+
+Inicia el servidor de desenvolupament:
+
+```bash
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
 
-Build the application for production:
+## Base de dades
+
+Per obrir Drizzle Studio i veure/editar les dades:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npx drizzle-kit studio
 ```
 
-Locally preview production build:
+## Estructura
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-# drizzle
-Create folder .data.
-
-```bash
-npx drizzle-kit push      # apply changes
-npx drizzle-kit studio    # open Drizzle Studio
-```
+- `app/pages/` - Pàgines de l'aplicació
+- `app/schemas/` - Esquemes de validació Zod
+- `app/types/` - Tipus TypeScript compartits
+- `server/api/` - Endpoints de l'API
+- `server/db/` - Configuració de la base de dades

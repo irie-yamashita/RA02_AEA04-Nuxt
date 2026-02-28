@@ -1,9 +1,8 @@
 import { db } from "../../db"
 import { pokemons } from "../../db/schema"
-import type { PokemonType } from "../../db/enums"
-import { pokemonTypes } from "../../db/enums"
 import { eq, and } from "drizzle-orm"
 import type { Pokemon } from "~/types"
+import { pokemonSchema } from "~/schemas/pokemon"
 
 export default defineEventHandler(async (event): Promise<Pokemon> => {
 
@@ -14,22 +13,23 @@ export default defineEventHandler(async (event): Promise<Pokemon> => {
     // recupero id del pokémon a modificar
     const id = Number(getRouterParam(event, "id"))
 
-
     if (!id) {
         throw createError({statusCode: 400,message: "ID no vàlid"})
     }
 
-    // agafo les dades del formulari
+    // agafo les dades del formulari i valido amb Zod
     const body = await readBody(event)
-    const { name, type, level, pokedexNum } = body
+    // per PUT, schema parcial pq no tots els camps són obligatoris
+    const result = pokemonSchema.partial().safeParse(body)
 
-    // validació del tipus
-    if (type && !pokemonTypes.includes(type as PokemonType)) {
+    if (!result.success) {
         throw createError({
             statusCode: 400,
-            message: `Tipus del Pokémon no vàlid. Valors vàlids: ${pokemonTypes.join(", ")}`
+            message: result.error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
         })
     }
+
+    const { name, type, level, pokedexNum } = result.data
 
     // comprovar si existeix pokemon i si és del user
     const existingPokemon = await db.query.pokemons.findFirst({

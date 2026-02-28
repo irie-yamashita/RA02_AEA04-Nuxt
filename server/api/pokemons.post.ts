@@ -1,8 +1,7 @@
 import { db } from "../db"
 import { pokemons } from "../db/schema"
-import type { PokemonType } from "../db/enums"
-import { pokemonTypes } from "../db/enums"
 import type { Pokemon } from "~/types"
+import { pokemonSchema } from "~/schemas/pokemon"
 
 export default defineEventHandler(async (event): Promise<Pokemon> => {
 
@@ -10,22 +9,18 @@ export default defineEventHandler(async (event): Promise<Pokemon> => {
     const session = await requireUserSession(event)
     const ownerId = Number(session.user.id)
 
-    // recupero dades
+    // recupero dades i valido amb Zod
     const body = await readBody(event)
-    const { name, type, level, pokedexNum } = body
+    const result = pokemonSchema.safeParse(body)
 
-    if (!name || !type || !pokedexNum) {
-        // bad request si falten camps obligatoris
-        throw createError({ statusCode: 400, message: "Falten camps obligatoris! [name, type, pokedexNum]" })
-    }
-
-    // validació tipus
-    if (!pokemonTypes.includes(type as PokemonType)) {
+    if (!result.success) {
         throw createError({
             statusCode: 400,
-            message: `Tipus del Pokémon no vàlid. Valors vàlids: ${pokemonTypes.join(", ")}`
+            message: result.error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
         })
     }
+
+    const { name, type, level, pokedexNum } = result.data
 
     // desestructurem i guardem 1 valor que retorna insert
     const [newPokemon] = await db
