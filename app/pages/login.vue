@@ -66,5 +66,6 @@ watch(loggedIn, () => {
         <UButton type="submit" class="mt-4 w-full justify-center" @click="openInPopup('/auth/github')">
             Login With Github
         </UButton>
+        <span class="mt-4">No tens compte? <a href="/register" class="underline pr-3">Registra't</a></span>
     </UCard>
 </template>

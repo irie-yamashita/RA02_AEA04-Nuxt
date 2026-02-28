@@ -31,6 +31,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             body: event.data
         })
         toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'success' })
+        navigateTo('/pokemons')
     } catch (error) {
 
     }
