@@ -48,24 +48,42 @@ watch(loggedIn, () => {
 </script>
 
 <template>
-    <UCard class="max-w-md m-auto my-10 mt-4">
-        <h1 class="text-2xl text-center">Login</h1>
+    <UCard class="max-w-md m-auto my-10 mt-4 card-pokemon">
+        <h1 class="text-2xl text-center pokemon-title">Login</h1>
         <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
             <UFormField label="Email" name="email">
-                <UInput v-model="state.email" class="w-full" />
+                <UInput v-model="state.email" class="w-full pokemon-input" />
             </UFormField>
 
             <UFormField label="Password" name="password">
-                <UInput v-model="state.password" type="password" class="w-full" />
+                <UInput v-model="state.password" type="password" class="w-full pokemon-input" />
             </UFormField>
 
-            <UButton type="submit" class="mt-4 w-full justify-center" >
+            <UButton type="submit" class="mt-4 w-full justify-center btn-primary" >
                 Submit
             </UButton>
         </UForm>
-        <UButton type="submit" class="mt-4 w-full justify-center" @click="openInPopup('/auth/github')">
+        <UButton type="submit" class="mt-4 w-full justify-center btn-primary" @click="openInPopup('/auth/github')">
             Login With Github
         </UButton>
-        <span class="mt-4">No tens compte? <UButton to="/register" class="mt-6 underline pr-3">Registra't</UButton></span>
+        <span class="mt-4 pokemon-text-muted">No tens compte? <UButton to="/register" class="mt-6 underline pr-3 pokemon-link">Registra't</UButton></span>
     </UCard>
 </template>
+
+<style scoped>
+  .pokemon-title {
+    color: var(--pokemon-text);
+  }
+
+  .pokemon-text-muted {
+    color: var(--pokemon-text-muted);
+  }
+
+  .pokemon-link {
+    color: var(--pokemon-light) !important;
+  }
+
+  .pokemon-link:hover {
+    color: var(--pokemon-lighter) !important;
+  }
+</style>

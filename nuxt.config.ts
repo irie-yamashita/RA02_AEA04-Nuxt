@@ -10,6 +10,12 @@ export default defineNuxtConfig({
   
   css: ['~/assets/css/main.css'],
 
+  ui: {
+    global: true,
+    icons: ['heroicons', 'simple-icons'],
+    safelistColors: ['primary', 'red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose']
+  },
+
   runtimeConfig: {
     oauth: {
     github: {

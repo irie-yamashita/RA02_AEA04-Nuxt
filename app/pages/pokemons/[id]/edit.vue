@@ -63,8 +63,8 @@ const onSubmit = async () => {
 
 <template>
   <div class="p-6 max-w-lg mx-auto">
-    <UCard>
-      <h1 class="text-xl font-bold mb-4">Editar Pokémon</h1>
+    <UCard class="card-pokemon">
+      <h1 class="text-xl font-bold mb-4 pokemon-title">Editar Pokémon</h1>
 
       <UForm
         v-if="pokemon"
@@ -74,19 +74,19 @@ const onSubmit = async () => {
         class="space-y-4"
       >
         <UFormField label="Nom" name="name">
-          <UInput class="w-full" v-model="state.name" />
+          <UInput class="w-full pokemon-input" v-model="state.name" />
         </UFormField>
 
         <UFormField label="Tipus" name="type">
-          <UInput class="w-full" v-model="state.type" placeholder="fire, water, grass, electric, normal" />
+          <UInput class="w-full pokemon-input" v-model="state.type" placeholder="fire, water, grass, electric, normal" />
         </UFormField>
 
         <UFormField label="Nivell" name="level">
-          <UInput class="w-full" type="number" v-model.number="state.level" />
+          <UInput class="w-full pokemon-input" type="number" v-model.number="state.level" />
         </UFormField>
 
         <UFormField label="Pokedex #" name="pokedexNum">
-          <UInput class="w-full" type="number" v-model.number="state.pokedexNum" />
+          <UInput class="w-full pokemon-input" type="number" v-model.number="state.pokedexNum" />
         </UFormField>
 
         <UButton
@@ -102,4 +102,10 @@ const onSubmit = async () => {
     </UCard>
   </div>
 </template>
+
+<style scoped>
+  .pokemon-title {
+    color: var(--pokemon-text);
+  }
+</style>
 

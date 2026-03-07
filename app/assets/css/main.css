@@ -1,3 +1,118 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+/* Paleta monocromática inspirada en Pokémon */
+:root {
+  /* Azules/grises - inspirados en Pokéball y universo Pokémon */
+  --pokemon-primary: #1e3a5f;      /* Azul oscuro profundo */
+  --pokemon-secondary: #2d4a6b;    /* Azul medio */
+  --pokemon-accent: #3a5f8f;       /* Azul medio-claro */
+  --pokemon-light: #4a7ba8;        /* Azul claro */
+  --pokemon-lighter: #6b9bc4;      /* Azul muy claro */
+  --pokemon-lightest: #8fb5d4;     /* Azul casi blanco */
+  
+  /* Grises para fondos y textos */
+  --pokemon-bg-dark: #0f1a2a;      /* Fondo oscuro */
+  --pokemon-bg: #1a2533;           /* Fondo principal */
+  --pokemon-bg-light: #243140;     /* Fondo claro */
+  --pokemon-text: #e8f0f7;         /* Texto claro */
+  --pokemon-text-muted: #b8c8d8;   /* Texto secundario */
+  --pokemon-border: #2d4a6b;       /* Bordes */
+  
+  /* Acentos */
+  --pokemon-success: #4a7ba8;
+  --pokemon-error: #8b5a6b;
+  --pokemon-warning: #7b8b5a;
+}
+
+/* Estilos globales */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+body {
+  background: linear-gradient(135deg, var(--pokemon-bg-dark) 0%, var(--pokemon-bg) 100%);
+  color: var(--pokemon-text);
+  min-height: 100vh;
+}
+
+/* Personalización de componentes Nuxt UI */
+.btn-primary {
+  background-color: var(--pokemon-primary) !important;
+  color: var(--pokemon-text) !important;
+  border-color: var(--pokemon-accent) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--pokemon-accent) !important;
+  border-color: var(--pokemon-light) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(30, 58, 95, 0.3);
+}
+
+/* Cards de Nuxt UI */
+[class*="UCard"] {
+  background: linear-gradient(135deg, var(--pokemon-bg-light) 0%, var(--pokemon-bg) 100%) !important;
+  border-color: var(--pokemon-border) !important;
+  color: var(--pokemon-text) !important;
+}
+
+/* Form fields */
+[class*="UFormField"] label {
+  color: var(--pokemon-text) !important;
+}
+
+/* Inputs personalizados */
+.pokemon-input {
+  background-color: var(--pokemon-bg-light) !important;
+  color: var(--pokemon-text) !important;
+  border-color: var(--pokemon-border) !important;
+}
+
+.pokemon-input:focus {
+  border-color: var(--pokemon-accent) !important;
+  box-shadow: 0 0 0 3px rgba(58, 95, 143, 0.2) !important;
+}
+
+/* Cards con estilo Pokémon */
+.card-pokemon {
+  background: linear-gradient(135deg, var(--pokemon-bg-light) 0%, var(--pokemon-bg) 100%);
+  border: 1px solid var(--pokemon-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.card-pokemon:hover {
+  border-color: var(--pokemon-accent);
+  box-shadow: 0 6px 12px rgba(30, 58, 95, 0.4);
+}
+
+/* Inputs con estilo Pokémon */
+input, textarea, select {
+  background-color: var(--pokemon-bg-light) !important;
+  color: var(--pokemon-text) !important;
+  border-color: var(--pokemon-border) !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--pokemon-accent) !important;
+  box-shadow: 0 0 0 3px rgba(58, 95, 143, 0.2) !important;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pokemon-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pokemon-primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pokemon-accent);
+}

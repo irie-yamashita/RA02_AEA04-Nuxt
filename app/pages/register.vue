@@ -47,27 +47,33 @@ watch(loggedIn, () => {
 </script>
 
 <template>
-    <UCard class="max-w-md m-auto my-10">
-        <h1 class="text-2xl text-center">Register</h1>
+    <UCard class="max-w-md m-auto my-10 card-pokemon">
+        <h1 class="text-2xl text-center pokemon-title">Register</h1>
         <UForm :schema="schema" :state="state" class="flex flex-col items-stretch gap-y-4" @submit="onSubmit">
             <UFormField label="Nom" name="name">
-                <UInput v-model="state.name" class="w-full" />
+                <UInput v-model="state.name" class="w-full pokemon-input" />
             </UFormField>
 
             <UFormField label="Email" name="email">
-                <UInput v-model="state.email" class="w-full" />
+                <UInput v-model="state.email" class="w-full pokemon-input" />
             </UFormField>
 
             <UFormField label="Password" name="password">
-                <UInput v-model="state.password" type="password" class="w-full" />
+                <UInput v-model="state.password" type="password" class="w-full pokemon-input" />
             </UFormField>
 
-            <UButton type="submit" class="w-full justify-center">
+            <UButton type="submit" class="w-full justify-center btn-primary">
                 Submit
             </UButton>
         </UForm>
-        <UButton class="mt-4 w-full justify-center" @click="openInPopup('/auth/github')">
+        <UButton class="mt-4 w-full justify-center btn-primary" @click="openInPopup('/auth/github')">
             Login with Github
         </UButton>
     </UCard>
 </template>
+
+<style scoped>
+  .pokemon-title {
+    color: var(--pokemon-text);
+  }
+</style>
