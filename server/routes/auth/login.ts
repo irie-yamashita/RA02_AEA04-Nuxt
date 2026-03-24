@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm"
 import * as schema from '../../db/schema'
+import jwt from 'jsonwebtoken';
 
 export default defineEventHandler(async (event) => {
   //1. Accedeixo als camps del formulari
@@ -14,6 +15,18 @@ export default defineEventHandler(async (event) => {
   const existingUser = await useDb().query.users.findFirst({
     where: eq(schema.users.email, email)
   })
+
+  // genero el JWT
+  const jwtSecret = process.env.JWT_SECRET;
+  const token = jwt.sign(
+    { id: existingUser?.id, email: existingUser?.email, login: existingUser?.login },
+    jwtSecret || '',
+    { expiresIn: '1h' }
+  );
+
+  // envio token a la cookie
+  setCookie(event, 'token', token, { httpOnly: true, path: '/' });
+
 
   if (!existingUser) {
     throw createError({ statusCode: 400, statusMessage: "Usuari no existeix" })
@@ -38,3 +51,5 @@ export default defineEventHandler(async (event) => {
   return userWhithoutPassword
 
 });
+
+
