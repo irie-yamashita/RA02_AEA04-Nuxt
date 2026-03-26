@@ -5,11 +5,17 @@ import type { Pokemon } from "~/types"
 
 export default defineEventHandler(async (event): Promise<Pokemon[]> => {
 
-    
-  //const session = await requireUserSession(event)
+  const user = event.context.user;
 
-  //const userId = Number(session.user.id)
-  const userId = 1;
+  if (!user) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: 'Accés denegat: Cal iniciar sessió o proporcionar un token vàlid.',
+    });
+  }
+
+  const userId = Number(user.id);
+
 
   const result = await db
     .select()

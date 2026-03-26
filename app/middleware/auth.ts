@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 
 // comprovo login de dues maneres: amb sessió de Nuxt o amb JWT
 export default defineNuxtRouteMiddleware(() => {
-    console.log('sssssssssssssssssssecret')
     const { loggedIn } = useUserSession();
 
     // comprovo si hi ha secció activa de Nuxt
