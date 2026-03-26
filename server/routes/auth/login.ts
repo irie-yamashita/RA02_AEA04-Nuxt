@@ -35,18 +35,11 @@ export default defineEventHandler(async (event) => {
     { expiresIn: '24h' }
   );
 
-  // 3. Mantenim la cookie (per al front de Nuxt vell)
-  setCookie(event, 'pokemon-token', token, { 
-    httpOnly: true, // Segueix sent invisible per a JS
-    path: '/',
-    sameSite: 'lax' 
-  });
-
-  // 4. Preparem la sessió de Nuxt Auth Utils
+  // 3. Preparem la sessió de Nuxt Auth Utils
   const { password: _, ...userWithoutPassword } = existingUser
   await setUserSession(event, { user: userWithoutPassword })
 
-  // 5. RETORNEM EL TOKEN AL JSON (Clau per a Quasar!)
+  // 4. RETORNEM EL TOKEN AL JSON (Clau per a Quasar!)
   return {
     user: userWithoutPassword,
     token: token // <--- Ara Quasar sí que el veurà
