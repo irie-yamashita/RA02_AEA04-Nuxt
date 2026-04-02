@@ -4,12 +4,10 @@ import { db } from "../db"
 import type { Pokemon } from "~/types"
 
 export default defineEventHandler(async (event): Promise<Pokemon[]> => {
-
     
-  //const session = await requireUserSession(event)
+  const session = await requireUserSession(event)
 
-  //const userId = Number(session.user.id)
-  const userId = 1;
+  const userId = Number(session.user.id)
 
   const result = await db
     .select()
